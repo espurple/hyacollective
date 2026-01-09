@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYA Collective</title>
+    <style>
+        :root {
+            --primary: #2D433D;
+            --accent: #8D6E63;
+            --bg: #F9F7F2;
+            --text: #333;
+        }
+        
+        body { font-family: "Didot", "Times New Roman", serif; background-color: var(--bg); color: var(--text); margin: 0; line-height: 1.8; }
+        
+        /* 页面切换控制 */
+        .page-section { display: none; min-height: 100vh; }
+        #layer-home { display: block; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+
+        /* 第一层布局 */
+        .hero-home { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .card-row { display: flex; gap: 20px; justify-content: center; margin: 40px 0; width: 100%; max-width: 1000px; }
+        .biz-card { 
+            background: white; border: 1px solid #ddd; padding: 50px 20px; width: 280px; 
+            cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .biz-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .biz-card.disabled { opacity: 0.5; cursor: not-allowed; background: #eee; }
+        .biz-card h2 { font-size: 1.5em; color: var(--primary); letter-spacing: 2px; margin: 0; }
+
+        /* 板块样式 */
+        .info-block { margin-bottom: 80px; }
+        .label { color: var(--accent); font-weight: bold; letter-spacing: 3px; font-size: 0.85em; text-transform: uppercase; display: block; margin-bottom: 20px; }
+        .pillar-grid { display: flex; gap: 25px; margin-top: 30px; }
+        .pillar { flex: 1; background: white; padding: 30px; border-top: 2px solid var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
+        .pillar h4 { color: var(--primary); margin-top: 0; letter-spacing: 1px; }
+
+        /* 导航与按钮 */
+        .btn-back { background: none; border: 1px solid var(--primary); color: var(--primary); cursor: pointer; padding: 8px 20px; margin-bottom: 30px; letter-spacing: 1px; text-transform: uppercase; font-size: 0.8em; }
+        .btn-back:hover { background: var(--primary); color: white; }
+        
+        /* Pathway 选择区域 */
+        .pathway-row { display: flex; gap: 25px; margin-top: 40px; }
+        .pathway-card { 
+            flex: 1; background: var(--primary); color: white; padding: 45px 30px; 
+            text-align: center; cursor: pointer; transition: 0.3s; 
+        }
+        .pathway-card:hover { background: var(--accent); transform: translateY(-3px); }
+        .pathway-card h3 { letter-spacing: 2px; margin-bottom: 10px; }
+        .pathway-card p { font-size: 0.9em; opacity: 0.9; }
+
+        /* 内容详情样式 */
+        .detail-content { font-size: 1.1em; color: #444; }
+        .detail-content h1 { font-size: 2.5em; color: var(--primary); border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 30px; }
+        .highlight-box { background: white; padding: 40px; border-left: 4px solid var(--accent); margin: 30px 0; line-height: 1.9; }
+
+        /* 底部 */
+        .footer-contact { margin-top: 50px; text-align: center; }
+        .qr-placeholder { width: 120px; height: 120px; margin: 20px auto; display: block; border: 1px solid #eee; padding: 5px; background: #fff; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .page-section { animation: fadeIn 0.6s ease; }
+    </style>
+</head>
+<body>
+
+    <section id="layer-home" class="page-section">
+        <div class="hero-home">
+            <h1 style="font-size: 3em; letter-spacing: 5px;">HYA COLLECTIVE</h1>
+            <p style="font-style: italic; color: #666; font-size: 1.2em;">Advanced Prevention, Eastern Restoration</p>
+            
+            <div class="card-row">
+                <div class="biz-card" onclick="showPage('layer-wellness')">
+                    <h2>HYA WELLNESS</h2>
+                    <p style="color: var(--accent); letter-spacing: 2px; font-size: 0.8em; margin-top: 25px;">DISCOVER &rarr;</p>
+                </div>
+                <div class="biz-card disabled">
+                    <h2>HYA EXPERIENCE</h2>
+                    <p style="font-size: 0.75em; margin-top: 25px; color: #999; letter-spacing: 1px;">UNDER CONSTRUCTION</p>
+                </div>
+                <div class="biz-card disabled">
+                    <h2>HYA AESTHETIC</h2>
+                    <p style="font-size: 0.75em; margin-top: 25px; color: #999; letter-spacing: 1px;">UNDER CONSTRUCTION</p>
+                </div>
+            </div>
+
+            <div class="footer-contact">
+                <p style="letter-spacing: 1px;">SALES@HYACOLLECTIVE.COM</p>
+                <img src="qr.png" alt="WhatsApp QR" class="qr-placeholder" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <section id="layer-wellness" class="page-section">
+        <div class="container">
+            <button class="btn-back" onclick="showPage('layer-home')">&larr; BACK TO COLLECTIVE</button>
+            
+            <div class="info-block">
+                <span class="label">Who We Are</span>
+                <h2>A curated journey for long-term wellbeing</h2>
+                <p>HYA Wellness is built for those who value clarity, comfort, and meaning in their pursuit of long-term wellbeing. We integrate advanced preventive health technologies with authentic Eastern healing traditions, creating journeys that are clinically insightful, restorative, and culturally enriching.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="label">What We Offer</span>
+                <div class="pillar-grid">
+                    <div class="pillar">
+                        <h4>Advanced Programmes</h4>
+                        <p style="font-size: 0.9em;">A comprehensive preventive core enhanced by optional specialist add-ons tailored to individual priorities.</p>
+                    </div>
+                    <div class="pillar">
+                        <h4>International Concierge</h4>
+                        <p style="font-size: 0.9em;">Seamless English-supported coordination from booking and scheduling to professional consultation.</p>
+                    </div>
+                    <div class="pillar">
+                        <h4>Eastern Immersion</h4>
+                        <p style="font-size: 0.9em;">Curated experiences designed to support recovery and restore balance through ancient wisdom.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <span class="label">Why Us</span>
+                <p>We provide access to some of China’s most advanced preventive technologies—including high-end imaging and genetic assessments—delivered with an international-standard experience. Our focus goes beyond screening to offer one trusted, holistic journey.</p>
+            </div>
+
+            <div style="background: #efeee9; padding: 60px 40px; text-align: center; border-radius: 2px;">
+                <span class="label">Experience Pathways</span>
+                <h3 style="font-weight: normal; margin-bottom: 30px;">Choose the environment that suits your pace</h3>
+                <div class="pathway-row">
+                    <div class="pathway-card" onclick="showPage('layer-classic')">
+                        <h3>CLASSIC SERIES</h3>
+                        <p>Comfort, Flow, and Efficiency</p>
+                    </div>
+                    <div class="pathway-card" onclick="showPage('layer-signature')">
+                        <h3>SIGNATURE SERIES</h3>
+                        <p>Privacy, Nature, and Discretion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="layer-classic" class="page-section">
+        <div class="container detail-content">
+            <button class="btn-back" onclick="showPage('layer-wellness')">&larr; BACK</button>
+            <h1>CLASSIC SERIES</h1>
+            
+            <div class="highlight-box">
+                <p>Our <strong>Classic Series</strong> is set within a well-established city experience, designed for those who value comfort, flow, and efficiency. It is the ideal choice for guests who prefer a streamlined and professional environment in a central urban setting.</p>
+                <p>Designed to fit seamlessly into a busy schedule, this series offers a direct and clear path to health insights without compromising on the quality of clinical care or international-standard coordination.</p>
+            </div>
+
+            <p style="margin-top: 40px; color: #666;">This pathway ensures a focused and restorative screening experience, providing a trusted foundation for your long-term preventive health journey.</p>
+            
+            <div class="footer-contact" style="border-top: 1px solid #ddd; padding-top: 40px;">
+                <p>For enquiries and private bookings:</p>
+                <p style="font-weight: bold;">SALES@HYACOLLECTIVE.COM</p>
+                <img src="qr.png" class="qr-placeholder" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <section id="layer-signature" class="page-section">
+        <div class="container detail-content">
+            <button class="btn-back" onclick="showPage('layer-wellness')">&larr; BACK</button>
+            <h1>SIGNATURE SERIES</h1>
+            
+            <div class="highlight-box" style="border-left-color: var(--primary);">
+                <p>The <strong>Signature Series</strong> represents our most representative experience. It is thoughtfully curated for those who seek enhanced privacy, discretion, and a deeper sense of tranquility during their health journey.</p>
+                <p>Set within a <strong>green retreat</strong> environment, this series offers a serene departure from the city's pace. It is designed for individuals who value a more personalised and unhurried experience, where the surroundings contribute as much to wellbeing as the clinical insights themselves.</p>
+                <p>With exclusive access to private lounges and a heightened level of attentive service, the Signature Series provides the ultimate setting for reflection and restoration.</p>
+            </div>
+
+            <p style="margin-top: 40px; color: #666;">A journey designed for balance, offering the most discreet and comprehensive approach to personal prevention.</p>
+            
+            <div class="footer-contact" style="border-top: 1px solid #ddd; padding-top: 40px;">
+                <p>For enquiries and private bookings:</p>
+                <p style="font-weight: bold;">SALES@HYACOLLECTIVE.COM</p>
+                <img src="qr.png" class="qr-placeholder" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 核心跳转函数：切换 display 属性
+        function showPage(pageId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => {
+                sec.style.display = 'none';
+            });
+            
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.style.display = 'block';
+                window.scrollTo(0, 0); // 确保每次跳转都回到页面顶部
+            }
+        }
+    </script>
+</body>
+</html>
