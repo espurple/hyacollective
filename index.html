@@ -69,48 +69,50 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .page-section { animation: fadeIn 0.6s ease; }
 
-    /* ========================================= */
-    /* 📱 移动端适配代码 (响应式设计)           */
+  /* ========================================= */
+    /* 📱 移动端适配代码 (响应式设计 - 修复版)    */
     /* ========================================= */
     @media screen and (max-width: 768px) {
         
-        /* 1. 全局容器调整：防止左右晃动 */
+        /* 1. 全局容器调整 */
         body, html { overflow-x: hidden; }
         .container { padding: 30px 20px; width: auto; }
 
-        /* 2. 首页两个大卡片 (About/Strategy) */
+        /* 2. 修复首页顶部内容被截断的问题 (关键修改) */
+        .hero-home {
+            height: auto !important;       /* 取消强制屏幕高度，允许内容撑开 */
+            min-height: 100vh;             /* 保证至少占满一屏 */
+            justify-content: flex-start;   /* 取消垂直居中，改为从上往下排 */
+            padding-top: 80px;             /* 给顶部留出空间，展示标题 */
+            padding-bottom: 60px;          /* 底部也留点空 */
+        }
+        
+        /* 3. 首页两个大卡片 */
         .card-row {
-            flex-direction: column; /* 强制竖排 */
-            align-items: center;    /* 居中对齐 */
+            flex-direction: column; 
+            align-items: center;    
             width: 100%;
+            margin-top: 20px;       /* 稍微减小卡片和标题的距离 */
         }
         .biz-card {
-            width: 100%;            /* 宽度占满屏幕 */
-            max-width: 100%;        /* 取消最大宽度限制 */
-            margin-bottom: 15px;    /* 卡片之间增加间距 */
-            height: auto;           /* 高度自适应 */
+            width: 100%;            
+            max-width: 100%;        
+            margin-bottom: 20px;    
+            height: auto;           
+            box-sizing: border-box; 
         }
 
-        /* 3. 三大支柱板块 (Pillars) */
-        .pillar-grid {
-            flex-direction: column; /* 强制竖排 */
+        /* 4. 其他板块适配 */
+        .pillar-grid, .pathway-row {
+            flex-direction: column; 
         }
-        .pillar {
-            width: 100%;
-            box-sizing: border-box; /* 包含内边距计算 */
-        }
-
-        /* 4. Pathway 按钮区域 */
-        .pathway-row {
-            flex-direction: column; /* 强制竖排 */
-        }
-        .pathway-card {
+        .pillar, .pathway-card {
             width: 100%;
             box-sizing: border-box;
             margin-bottom: 15px;
         }
 
-        /* 5. 字体大小微调 (手机上标题太大不好看) */
+        /* 5. 字体微调 */
         .detail-content h1 { font-size: 1.8em; }
         .highlight-box { padding: 20px; }
     }
