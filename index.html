@@ -5,65 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HYA Collective</title>
     <style>
-        :root {
-            --primary: #2D433D;
-            --accent: #8D6E63;
-            --bg: #F9F7F2;
-            --text: #333;
-        }
+    :root {
+        --primary: #2D433D;
+        --accent: #8D6E63;
+        --bg: #F9F7F2;
+        --text: #333;
+    }
+    
+    body { font-family: "Didot", "Times New Roman", serif; background-color: var(--bg); color: var(--text); margin: 0; line-height: 1.8; }
+    
+    /* 页面切换控制 */
+    .page-section { display: none; min-height: 100vh; }
+    #layer-home { display: block; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+
+    /* 第一层布局 */
+    .hero-home { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    
+    .card-row { display: flex; gap: 20px; justify-content: center; margin: 40px 0; width: 100%; max-width: 1000px; }
+    
+    .biz-card { 
+        background: white; border: 1px solid #ddd; padding: 50px 20px; width: 280px; 
+        cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        /* 新增：确保padding不会导致宽度超出 */
+        box-sizing: border-box; 
+    }
+    .biz-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+    .biz-card.disabled { opacity: 0.5; cursor: not-allowed; background: #eee; }
+    .biz-card h2 { font-size: 1.5em; color: var(--primary); letter-spacing: 2px; margin: 0; }
+
+    /* 板块样式 */
+    .info-block { margin-bottom: 80px; }
+    .label { color: var(--accent); font-weight: bold; letter-spacing: 3px; font-size: 0.85em; text-transform: uppercase; display: block; margin-bottom: 20px; }
+    
+    .pillar-grid { display: flex; gap: 25px; margin-top: 30px; }
+    .pillar { flex: 1; background: white; padding: 30px; border-top: 2px solid var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
+    .pillar h4 { color: var(--primary); margin-top: 0; letter-spacing: 1px; }
+
+    /* 导航与按钮 */
+    .btn-back { background: none; border: 1px solid var(--primary); color: var(--primary); cursor: pointer; padding: 8px 20px; margin-bottom: 30px; letter-spacing: 1px; text-transform: uppercase; font-size: 0.8em; }
+    .btn-back:hover { background: var(--primary); color: white; }
+    
+    /* Pathway 选择区域 */
+    .pathway-row { display: flex; gap: 25px; margin-top: 40px; }
+    .pathway-card { 
+        flex: 1; background: var(--primary); color: white; padding: 45px 30px; 
+        text-align: center; cursor: pointer; transition: 0.3s; 
+    }
+    .pathway-card:hover { background: var(--accent); transform: translateY(-3px); }
+    .pathway-card h3 { letter-spacing: 2px; margin-bottom: 10px; }
+    .pathway-card p { font-size: 0.9em; opacity: 0.9; }
+
+    /* 内容详情样式 */
+    .detail-content { font-size: 1.1em; color: #444; }
+    .detail-content h1 { font-size: 2.5em; color: var(--primary); border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 30px; }
+    .highlight-box { background: white; padding: 40px; border-left: 4px solid var(--accent); margin: 30px 0; line-height: 1.9; }
+
+    /* 底部 */
+    .footer-contact { margin-top: 50px; text-align: center; }
+    .qr-placeholder { width: 120px; height: 120px; margin: 20px auto; display: block; border: 1px solid #eee; padding: 5px; background: #fff; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .page-section { animation: fadeIn 0.6s ease; }
+
+    /* ========================================= */
+    /* 📱 移动端适配代码 (响应式设计)           */
+    /* ========================================= */
+    @media screen and (max-width: 768px) {
         
-        body { font-family: "Didot", "Times New Roman", serif; background-color: var(--bg); color: var(--text); margin: 0; line-height: 1.8; }
-        
-        /* 页面切换控制 */
-        .page-section { display: none; min-height: 100vh; }
-        #layer-home { display: block; }
+        /* 1. 全局容器调整：防止左右晃动 */
+        body, html { overflow-x: hidden; }
+        .container { padding: 30px 20px; width: auto; }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-
-        /* 第一层布局 */
-        .hero-home { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .card-row { display: flex; gap: 20px; justify-content: center; margin: 40px 0; width: 100%; max-width: 1000px; }
-        .biz-card { 
-            background: white; border: 1px solid #ddd; padding: 50px 20px; width: 280px; 
-            cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        /* 2. 首页两个大卡片 (About/Strategy) */
+        .card-row {
+            flex-direction: column; /* 强制竖排 */
+            align-items: center;    /* 居中对齐 */
+            width: 100%;
         }
-        .biz-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .biz-card.disabled { opacity: 0.5; cursor: not-allowed; background: #eee; }
-        .biz-card h2 { font-size: 1.5em; color: var(--primary); letter-spacing: 2px; margin: 0; }
-
-        /* 板块样式 */
-        .info-block { margin-bottom: 80px; }
-        .label { color: var(--accent); font-weight: bold; letter-spacing: 3px; font-size: 0.85em; text-transform: uppercase; display: block; margin-bottom: 20px; }
-        .pillar-grid { display: flex; gap: 25px; margin-top: 30px; }
-        .pillar { flex: 1; background: white; padding: 30px; border-top: 2px solid var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
-        .pillar h4 { color: var(--primary); margin-top: 0; letter-spacing: 1px; }
-
-        /* 导航与按钮 */
-        .btn-back { background: none; border: 1px solid var(--primary); color: var(--primary); cursor: pointer; padding: 8px 20px; margin-bottom: 30px; letter-spacing: 1px; text-transform: uppercase; font-size: 0.8em; }
-        .btn-back:hover { background: var(--primary); color: white; }
-        
-        /* Pathway 选择区域 */
-        .pathway-row { display: flex; gap: 25px; margin-top: 40px; }
-        .pathway-card { 
-            flex: 1; background: var(--primary); color: white; padding: 45px 30px; 
-            text-align: center; cursor: pointer; transition: 0.3s; 
+        .biz-card {
+            width: 100%;            /* 宽度占满屏幕 */
+            max-width: 100%;        /* 取消最大宽度限制 */
+            margin-bottom: 15px;    /* 卡片之间增加间距 */
+            height: auto;           /* 高度自适应 */
         }
-        .pathway-card:hover { background: var(--accent); transform: translateY(-3px); }
-        .pathway-card h3 { letter-spacing: 2px; margin-bottom: 10px; }
-        .pathway-card p { font-size: 0.9em; opacity: 0.9; }
 
-        /* 内容详情样式 */
-        .detail-content { font-size: 1.1em; color: #444; }
-        .detail-content h1 { font-size: 2.5em; color: var(--primary); border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 30px; }
-        .highlight-box { background: white; padding: 40px; border-left: 4px solid var(--accent); margin: 30px 0; line-height: 1.9; }
+        /* 3. 三大支柱板块 (Pillars) */
+        .pillar-grid {
+            flex-direction: column; /* 强制竖排 */
+        }
+        .pillar {
+            width: 100%;
+            box-sizing: border-box; /* 包含内边距计算 */
+        }
 
-        /* 底部 */
-        .footer-contact { margin-top: 50px; text-align: center; }
-        .qr-placeholder { width: 120px; height: 120px; margin: 20px auto; display: block; border: 1px solid #eee; padding: 5px; background: #fff; }
+        /* 4. Pathway 按钮区域 */
+        .pathway-row {
+            flex-direction: column; /* 强制竖排 */
+        }
+        .pathway-card {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .page-section { animation: fadeIn 0.6s ease; }
-    </style>
+        /* 5. 字体大小微调 (手机上标题太大不好看) */
+        .detail-content h1 { font-size: 1.8em; }
+        .highlight-box { padding: 20px; }
+    }
+</style>
 </head>
 <body>
 
