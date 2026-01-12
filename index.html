@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HYA Collective</title>
     <style>
+    /* 1. 定义颜色变量 (确保颜色恢复) */
     :root {
         --primary: #2D433D;
         --accent: #8D6E63;
@@ -20,15 +21,32 @@
 
     .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
 
-    /* 第一层布局 */
-    .hero-home { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    /* ========================================= */
+    /* 🖥️ 第一层布局 (修复 PC 显示不全问题)      */
+    /* ========================================= */
+    .hero-home { 
+        min-height: 100vh; /* 重点：允许高度自动延伸，不再死板地卡在屏幕高度 */
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center; 
+        text-align: center; 
+        padding: 60px 0; /* 增加上下边距，防止在矮屏幕电脑上贴边 */
+    }
     
-    .card-row { display: flex; gap: 20px; justify-content: center; margin: 40px 0; width: 100%; max-width: 1000px; }
+    /* PC 端默认横向排列 (确保布局恢复) */
+    .card-row { 
+        display: flex; 
+        gap: 20px; 
+        justify-content: center; 
+        margin: 40px 0; 
+        width: 100%; 
+        max-width: 1000px; 
+    }
     
     .biz-card { 
         background: white; border: 1px solid #ddd; padding: 50px 20px; width: 280px; 
         cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        /* 新增：确保padding不会导致宽度超出 */
         box-sizing: border-box; 
     }
     .biz-card:hover { transform: translateY(-5px); border-color: var(--accent); }
@@ -69,50 +87,39 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .page-section { animation: fadeIn 0.6s ease; }
 
-  /* ========================================= */
-    /* 📱 移动端适配代码 (响应式设计 - 修复版)    */
+    /* ========================================= */
+    /* 📱 移动端适配代码 (手机端样式)           */
     /* ========================================= */
     @media screen and (max-width: 768px) {
         
-        /* 1. 全局容器调整 */
         body, html { overflow-x: hidden; }
         .container { padding: 30px 20px; width: auto; }
 
-        /* 2. 修复首页顶部内容被截断的问题 (关键修改) */
+        /* 首页适配：取消居中，防止内容被遮挡 */
         .hero-home {
-            height: auto !important;       /* 取消强制屏幕高度，允许内容撑开 */
-            min-height: 100vh;             /* 保证至少占满一屏 */
-            justify-content: flex-start;   /* 取消垂直居中，改为从上往下排 */
-            padding-top: 80px;             /* 给顶部留出空间，展示标题 */
-            padding-bottom: 60px;          /* 底部也留点空 */
+            height: auto !important;
+            justify-content: flex-start;
+            padding-top: 80px; 
+            padding-bottom: 60px;
         }
         
-        /* 3. 首页两个大卡片 */
+        /* 强制竖排 */
         .card-row {
             flex-direction: column; 
             align-items: center;    
             width: 100%;
-            margin-top: 20px;       /* 稍微减小卡片和标题的距离 */
+            margin-top: 20px;
         }
         .biz-card {
             width: 100%;            
             max-width: 100%;        
             margin-bottom: 20px;    
             height: auto;           
-            box-sizing: border-box; 
         }
 
-        /* 4. 其他板块适配 */
-        .pillar-grid, .pathway-row {
-            flex-direction: column; 
-        }
-        .pillar, .pathway-card {
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 15px;
-        }
+        .pillar-grid, .pathway-row { flex-direction: column; }
+        .pillar, .pathway-card { width: 100%; box-sizing: border-box; margin-bottom: 15px; }
 
-        /* 5. 字体微调 */
         .detail-content h1 { font-size: 1.8em; }
         .highlight-box { padding: 20px; }
     }
